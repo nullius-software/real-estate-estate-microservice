@@ -1,0 +1,9 @@
+spring.cloud.config.profile=dev
+spring.application.name=estate-microservice
+server.port=0
+
+eureka.instance.instance-id=${spring.application.name}:${random.uuid}
+
+spring.sql.init.platform=postgres
+spring.datasource.username=postgres
+spring.datasource.password=maldicion1
