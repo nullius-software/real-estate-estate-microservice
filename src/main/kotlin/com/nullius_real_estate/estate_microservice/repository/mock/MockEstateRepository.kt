@@ -40,7 +40,7 @@ class MockEstateRepository: EstateRepository {
         return estatesList
     }
 
-    override fun findAll(sort: Sort): MutableList<EstateEntity> {
+    override fun findAll(sort: Sort): List<EstateEntity> {
         val comparator = sort.map { order ->
             val property = order.property
             val direction = if (order.isAscending) 1 else -1
@@ -52,7 +52,7 @@ class MockEstateRepository: EstateRepository {
             }
         }.reduce { acc, comparator -> acc.thenComparing(comparator) }
 
-        return estatesList.sortedWith(comparator).toMutableList()
+        return estatesList.sortedWith(comparator).toList()
     }
 
     override fun findAll(pageable: Pageable): Page<EstateEntity> {
@@ -62,14 +62,14 @@ class MockEstateRepository: EstateRepository {
         return PageImpl(pageContent, pageable, estatesList.size.toLong())
     }
 
-    override fun <S : EstateEntity> findAll(example: Example<S>): MutableList<S> {
+    override fun <S : EstateEntity> findAll(example: Example<S>): List<S> {
         val results = estatesList.filter {
             it == example.probe
-        }.toMutableList() as MutableList<S>
+        }.toList() as List<S>
         return results
     }
 
-    override fun <S : EstateEntity?> findAll(example: Example<S>, sort: Sort): MutableList<S> {
+    override fun <S : EstateEntity?> findAll(example: Example<S>, sort: Sort): List<S> {
         val comparator = sort.map { order ->
             val property = order.property
             val direction = if (order.isAscending) 1 else -1
@@ -83,12 +83,12 @@ class MockEstateRepository: EstateRepository {
 
         val results = estatesList.filter {
             it == example.probe
-        }.sortedWith(comparator).toMutableList() as MutableList<S>
+        }.sortedWith(comparator).toList() as List<S>
         return results
     }
 
     override fun <S : EstateEntity?> findAll(example: Example<S>, pageable: Pageable): Page<S> {
-        val filteredList = estatesList.filter { it == example.probe } as MutableList<S>
+        val filteredList = estatesList.filter { it == example.probe } as List<S>
         val start = pageable.offset.toInt()
         val end = (start + pageable.pageSize).coerceAtMost(estatesList.size)
         val pageContent = filteredList.subList(start, end)
