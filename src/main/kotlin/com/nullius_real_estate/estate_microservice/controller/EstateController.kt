@@ -27,7 +27,7 @@ class EstateController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun createEstate(@RequestBody estateEntity: EstateEntity): EstateEntity {
+    fun create(@RequestBody estateEntity: EstateEntity): EstateEntity {
         return estateService.create(estateEntity)
     }
 }
