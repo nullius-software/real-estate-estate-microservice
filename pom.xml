@@ -86,7 +86,7 @@
             <artifactId>mockito-inline</artifactId>
             <version>5.2.0</version>
         </dependency>
-        
+
         <!--	Documentation	-->
         <dependency>
             <groupId>org.springdoc</groupId>
