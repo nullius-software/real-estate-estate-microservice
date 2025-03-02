@@ -1,7 +1,6 @@
 package com.nullius_real_estate.estate_microservice.controller
 
 import com.nullius_real_estate.estate_microservice.entity.EstateEntity
-import com.nullius_real_estate.estate_microservice.repository.EstateRepository
 import com.nullius_real_estate.estate_microservice.service.EstateService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
